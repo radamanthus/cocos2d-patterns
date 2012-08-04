@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cocos2d-patterns by radamanthus</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Cocos2d-patterns</h1>
+        <p>A repository of Cocos2d solutions to common problems</p>
+
+        <p class="view"><a href="https://github.com/radamanthus/cocos2d-patterns">View the Project on GitHub <small>radamanthus/cocos2d-patterns</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/radamanthus/cocos2d-patterns/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/radamanthus/cocos2d-patterns/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/radamanthus/cocos2d-patterns">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Cocos2D/Kobold2D Patterns</h1>
+
+<p>A repository of solutions to common Cocos2D/Kobold2D problems.</p>
+
+<h1>Drawing</h1>
+
+<h3>Sprites</h3>
+
+<pre><code>int x = 100;
+int y = 100;
+CCSprite *aSprite = [CCSprite spriteWithFile:@"sprite.png"];
+aSprite.position = CGPointMake(x, y);
+[self addChild:aSprite];
+</code></pre>
+
+<h3>Text Labels</h3>
+
+<pre><code>aLabel = [CCLabelTTF labelWithString:@"Hello, World!!"
+                                           fontName:@"Marker Felt"
+                                           fontSize:24];
+aLabel = CGPointMake(400, 40);
+aLabel = ccGREEN;
+[self addChild:aLabel];
+</code></pre>
+
+<h3>Buttons</h3>
+
+<p>First, create a CCSprite (see Drawing Sprites above). Then create or modify the ccTouchesBegan method:</p>
+
+<pre><code>- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:[touch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    if (CGRectContainsPoint([aSprite boundingBox], location)) {
+        CCLOG(@"The object aSprite was tapped!");
+    }
+}
+</code></pre>
+
+<h1>Configuration</h1>
+
+<h3>Initializing properties from a config.lua file</h3>
+
+<p>Create a config.lua file with this section:</p>
+
+<pre><code>MyConfig = 
+{
+    NumberOfPigs = 50,
+    NumberOfCows = 20,
+    NumberOfChickens = 30,
+}
+</code></pre>
+
+<p>Then run this:</p>
+
+<pre><code>[KKConfig injectPropertiesFromKeyPath:@"MyConfig" target:self];
+</code></pre>
+
+<p>The above KKConfig call will be like running the following code:</p>
+
+<pre><code>self.numberOfPigs = 50;
+self.numberOfCows = 20;
+self.numberOfChickens = 30;
+</code></pre>
+
+<h1>Scenes</h1>
+
+<p>To switch from OriginLayer to TargetLayer:</p>
+
+<ol>
+<li>
+<p>Add this class method to TargetLayer.</p>
+
+<pre><code>+(CCScene *) scene
+{
+    CCScene *scene = [CCScene node];
+    TargetLayer* layer = [TargetLayer node];
+    [scene addChild: layer];
+
+    // return the scene
+    return scene;
+}
+</code></pre>
+</li>
+<li>
+<p>From OriginLayer:</p>
+
+<pre><code>CCScene* trans = [CCTransitionFlipY transitionWithDuration:0.2 scene: [TargetLayer scene]];
+[[CCDirector sharedDirector] replaceScene: trans ];
+</code></pre>
+</li>
+</ol><p>You can replace CCTransitionFlipY with any of the transitions defined in CCTransition.h</p>
+
+<h1>Audio</h1>
+
+<p>TODO</p>
+
+<h1>Misc</h1>
+
+<h3>Generate a Random number</h3>
+
+<p>This generates a random number between 1 and 100 (inclusive).</p>
+
+<pre><code>(arc4random() % 100) + 1;
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/radamanthus">radamanthus</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-33222743-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
