@@ -3,17 +3,17 @@ Cocos2D/Kobold2D Patterns
 
 A repository of solutions to common Cocos2D/Kobold2D problems.
 
-### Drawing
+# Drawing
 
-##### Sprites
+### Sprites
 
-##### Text Labels
+### Text Labels
 
-##### Buttons
+### Buttons
 
-### Configuration
+# Configuration
 
-##### Initializing properties from a config.lua file
+### Initializing properties from a config.lua file
 
 Create a config.lua file with this section:
 
@@ -34,7 +34,7 @@ The above KKConfig call will be like running the following code:
     self.numberOfCows = 20;
     self.numberOfChickens = 30;
 
-### Scenes
+# Scenes
 
 To switch from OriginLayer to TargetLayer:
 
@@ -58,11 +58,11 @@ To switch from OriginLayer to TargetLayer:
 You can replace CCTransitionFlipY with any of the transitions defined in CCTransition.h
     
 
-### Audio
+# Audio
 
-### Misc
+# Misc
 
-##### Generate a Random number
+### Generate a Random number
 
 This generates a random number between 1 and 100 (inclusive).
 
