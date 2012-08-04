@@ -7,9 +7,35 @@ A repository of solutions to common Cocos2D/Kobold2D problems.
 
 ### Sprites
 
+	int x = 100;
+	int y = 100;
+	CCSprite *aSprite = [CCSprite spriteWithFile:@"sprite.png"];
+	aSprite.position = CGPointMake(x, y);
+	[self addChild:aSprite];
+
 ### Text Labels
 
+	aLabel = [CCLabelTTF labelWithString:@"Hello, World!!"
+	                                           fontName:@"Marker Felt"
+	                                           fontSize:24];
+	aLabel = CGPointMake(400, 40);
+	aLabel = ccGREEN;
+	[self addChild:aLabel];
+
 ### Buttons
+
+First, create a CCSprite (see Drawing Sprites above). Then create or modify the ccTouchesBegan method:
+
+	- (void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+	{
+		UITouch *touch = [touches anyObject];
+		CGPoint location = [touch locationInView:[touch view]];
+		location = [[CCDirector sharedDirector] convertToGL:location];
+        if (CGRectContainsPoint([aSprite boundingBox], location)) {
+            CCLOG(@"The object aSprite was tapped!");
+        }
+	}
+
 
 # Configuration
 
@@ -59,6 +85,8 @@ You can replace CCTransitionFlipY with any of the transitions defined in CCTrans
     
 
 # Audio
+
+TODO
 
 # Misc
 
